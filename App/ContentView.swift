@@ -18,20 +18,23 @@ struct ContentView: View {
   ]
   
   var body: some View {
-    ScrollView {
-      LazyVGrid(columns: layout, spacing: 20) {
-        ForEach(data, id: \.self) { item in
-          VStack {
-            Capsule()
-              .fill(Color.blue)
-              .frame(height: 50)
-            
-            Text(item)
-              .foregroundColor(.secondary)
+    NavigationView {
+      ScrollView {
+        LazyVGrid(columns: layout, spacing: 20) {
+          ForEach(data, id: \.self) { item in
+            VStack {
+              Capsule()
+                .fill(Color.blue)
+                .frame(height: 50)
+              
+              Text(item)
+                .foregroundColor(.secondary)
+            }
           }
         }
+        .padding(.horizontal)
       }
-      .padding(.horizontal)
+      .navigationTitle("SF Symbols Browser")
     }
   }
 }
