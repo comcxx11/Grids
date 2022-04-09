@@ -12,14 +12,23 @@ struct ContentView: View {
   let data = Array(1...1000).map { "Item \($0)" }
   
   let layout = [
-    GridItem(.adaptive(minimum: 80))
+    GridItem(.flexible(minimum: 80, maximum: 80)),
+    GridItem(.flexible())
+//    GridItem(.adaptive(minimum: 80, maximum: 100))
   ]
   
   var body: some View {
     ScrollView {
       LazyVGrid(columns: layout, spacing: 20) {
         ForEach(data, id: \.self) { item in
-          Text(item)
+          VStack {
+            Capsule()
+              .fill(Color.blue)
+              .frame(height: 50)
+            
+            Text(item)
+              .foregroundColor(.secondary)
+          }
         }
       }
       .padding(.horizontal)
